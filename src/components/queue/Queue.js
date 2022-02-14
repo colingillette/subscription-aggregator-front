@@ -1,5 +1,5 @@
 import React from "react";
-import EntryList from "./EntryList";
+import EntryList from "../entry/EntryList";
 
 const Queue = () => {
   return (
