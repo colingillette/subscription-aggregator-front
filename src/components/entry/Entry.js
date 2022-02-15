@@ -1,9 +1,23 @@
-import React from "react";
+import React, { memo } from "react";
 import TimeStampRenerer from "../common/TimeStampRenderer";
 import MediaTypeTimeEstimate from "../common/MediaTypeTimeEstimate";
+import EntryAuthorList from "./EntryAuthorList";
+import ErrorBoundary from "../common/ErrorBoundary";
 
-function Entry({ queue }) {
-  const entry = JSON.parse(queue).entry;
+const EntryNoErrorBoundary = memo(function Entry({ queue, showErrorCard }) {
+  const entry = queue.entry;
+
+  if (showErrorCard) {
+    return (
+      <div className="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-sm-12 col-xs-12 mb-4">
+        <div className="card h-100 p-4 mt-4">
+          <div className="entry-info">
+            <h4>ERROR!</h4>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-sm-12 col-xs-12 mb-4">
@@ -24,15 +38,24 @@ function Entry({ queue }) {
             timeStamp={entry.releaseTimeStamp}
           />
           <p>{entry.description}</p>
-          <div>
-            Authors:{" "}
-            {entry.authors.map(function (author, idx) {
-              return <li key={idx}>{author.name}</li>;
-            })}
-          </div>
+          <EntryAuthorList authors={entry.authors} />
         </div>
       </div>
     </div>
+  );
+}, areEqualEntry);
+
+function areEqualEntry(prevProps, nextProps) {
+  return prevProps.entry.views === nextProps.entry.views;
+}
+
+function Entry(props) {
+  return (
+    <ErrorBoundary
+      errorUI={<EntryNoErrorBoundary {...props} showErrorCard={true} />}
+    >
+      <EntryNoErrorBoundary {...props} />
+    </ErrorBoundary>
   );
 }
 
