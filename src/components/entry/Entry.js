@@ -4,9 +4,7 @@ import MediaTypeTimeEstimate from "../common/MediaTypeTimeEstimate";
 import EntryAuthorList from "./EntryAuthorList";
 import ErrorBoundary from "../common/ErrorBoundary";
 
-const EntryNoErrorBoundary = memo(function Entry({ queue, showErrorCard }) {
-  const entry = queue.entry;
-
+const EntryNoErrorBoundary = memo(function Entry({ entry, showErrorCard }) {
   if (showErrorCard) {
     return (
       <div className="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-sm-12 col-xs-12 mb-4">

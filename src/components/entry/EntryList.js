@@ -23,7 +23,7 @@ function EntryList() {
       >
         <div className="row">
           {data.map(function (queue) {
-            return <Entry key={queue.id} queue={queue} />;
+            return <Entry key={queue.entry.id} entry={queue.entry} />;
           })}
         </div>
       </ReactPlaceHolder>
