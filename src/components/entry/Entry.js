@@ -35,7 +35,11 @@ const EntryNoErrorBoundary = memo(function Entry({ entry, showErrorCard }) {
             copy={"Released"}
             timeStamp={entry.releaseTimeStamp}
           />
+          <p>{entry.channel.provider.name}</p>
           <p>{entry.description}</p>
+          <p>
+            <input type={"checkbox"} checked={entry.favorite} readOnly />
+          </p>
           <EntryAuthorList authors={entry.authors} />
         </div>
       </div>

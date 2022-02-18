@@ -9,6 +9,8 @@ const Footer = () => {
         {" | "}
         <Link to="/">Queue</Link>
         {" | "}
+        <Link to="subscriptions">Subscriptions</Link>
+        {" | "}
         <Link to="search">Search</Link>
       </nav>
     </div>

@@ -7,6 +7,7 @@ import Favorites from "./favorites/Favorites";
 import Queue from "./queue/Queue";
 import Search from "./search/Search";
 import PageNotFound from "./common/PageNotFound";
+import Subscriptions from "./subscriptions/Subscriptions";
 
 export default function App() {
   return (
@@ -19,6 +20,7 @@ export default function App() {
               <Route path="/" element={<Queue />} />
               <Route path="/favorites" element={<Favorites />} />
               <Route path="/search" element={<Search />} />
+              <Route path="/subscriptions" element={<Subscriptions />} />
               <Route path="*" element={<PageNotFound />} />
             </Routes>
           </div>
